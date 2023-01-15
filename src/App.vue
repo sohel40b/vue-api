@@ -18,7 +18,6 @@ import { RouterLink, RouterView } from 'vue-router'
   header {
     overflow: hidden;
     background-color: #f1f1f1;
-    padding: 20px 10px;
   }
   header h4 {
     float: left;
@@ -29,6 +28,7 @@ import { RouterLink, RouterView } from 'vue-router'
     font-size: 18px;
     line-height: 25px;
     border-radius: 4px;
+    margin: 0px;
   }
   header h4.logo {
     font-size: 25px;
