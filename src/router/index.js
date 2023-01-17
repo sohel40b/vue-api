@@ -22,7 +22,8 @@ const router = createRouter({
     {
       path: '/simple/:id/edit',
       name: 'CrudEdit',
-      component: () => import('../views/crud/CrudEdit.vue')
+      component: () => import('../views/crud/CrudEdit.vue'),
+      props: true
     }
   ]
 })

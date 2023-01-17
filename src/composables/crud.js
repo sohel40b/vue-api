@@ -14,7 +14,7 @@ export default function useSimple(){
         index.value = response.data.data;
     }
     const getShow = async (id) => {
-        const response = await axios.get("simple" + id);
+        const response = await axios.get("simple/" + id);
         show.value = response.data.data;
     }
     const store = async (data) => {
@@ -29,7 +29,7 @@ export default function useSimple(){
     }
     const update = async (id) => {
         try {
-            await axios.put("simple" + id, show.value)
+            await axios.put("simple/" + id, show.value)
             await router.push({name: "CrudIndex"});
         } catch (error) {
             if (error.response.status == 422) {
@@ -42,7 +42,7 @@ export default function useSimple(){
         if (!window.confirm("Are you sure?")) {
             return;
         }
-        await axios.delete("simple" + id);
+        await axios.delete("simple/" + id);
         await getIndex();
     }
     return{
