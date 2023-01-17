@@ -1,5 +1,5 @@
-import { ref } from "vue";
 import axios from "axios";
+import { ref } from "vue";
 import { useRouter } from "vue-router";
 axios.defaults.baseURL = "http://127.0.0.1:8000/api/v1/";
 
@@ -19,12 +19,23 @@ export default function useSimple(){
     }
     const store = async (data) => {
         try {
-            await axios.post("simple", data);
+            console.log(data);
+            let formData = new FormData();
+            formData.append('name', data.name);
+            formData.append('email', data.email);
+            formData.append('gender', data.gender);
+            formData.append('skills', data.skills);
+            formData.append('image', data.image,data.name+".jpg");
+            await axios.post("simple", formData, {
+                headers: {
+                    'Content-Type': `multipart/form-data`
+                }
+            });
             await router.push({name: "CrudIndex"});
         } catch (error) {
-            if(error.response.status === 422){
-                error.value = error.response.data.error;
-            }
+            // if(error.response.status === 422){
+            //     error.value = error.response.data.error;
+            // }
         }
     }
     const update = async (id) => {

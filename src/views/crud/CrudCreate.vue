@@ -6,10 +6,15 @@
   const data = reactive({
     name: '',
     email: '',
-    image: '',
+    image: null,
+    imageName: null,
     gender: '',
-    skills: ''
+    skills: []
   });
+  const appendFile = (image, imageName) => {
+    data.imageName = image;
+    data.image = imageName[0];
+  }
 </script>
 
 <template>
@@ -30,7 +35,7 @@
       </div>
 
       <label for="image">Image</label>
-      <input type="file" id="image" @change="uploadFile()"><br><br>
+      <input type="file" id="image" @change="appendFile($event.target.name, $event.target.files)"><br><br>
 
       <label>Gender</label>
       <input type="radio" id="male" v-model="data.gender" value="1">
@@ -40,22 +45,22 @@
 
       <div>Skills</div><br>
 
-      <input type="checkbox" id="laravel" v-model="data.skills" true-value="yes" false-value="no" value="1">
+      <input type="checkbox" id="laravel" v-model="data.skills[0]"  value="1">
       <label for="laravel">Laravel</label>
 
-      <input type="checkbox" id="codeigniter" v-model="data.skills" true-value="yes" false-value="no" value="2">
+      <input type="checkbox" id="codeigniter" v-model="data.skills[1]"  value="2">
       <label for="codeigniter">Codeigniter</label><br>
 
-      <input type="checkbox" id="ajax" v-model="data.skills" true-value="yes" false-value="no" value="3">
+      <input type="checkbox" id="ajax" v-model="data.skills[2]"  value="3">
       <label for="ajax">Ajax</label>
 
-      <input type="checkbox" id="vue" v-model="data.skills" true-value="yes" false-value="no" value="4">
+      <input type="checkbox" id="vue" v-model="data.skills[3]"  value="4">
       <label for="vue">Vue JS</label><br>
 
-      <input type="checkbox" id="mysql" v-model="data.skills" true-value="yes" false-value="no" value="5">
+      <input type="checkbox" id="mysql" v-model="data.skills[4]"  value="5">
       <label for="mysql">MySQL</label>
 
-      <input type="checkbox" id="api" v-model="data.skills" true-value="yes" false-value="no" value="6">
+      <input type="checkbox" id="api" v-model="data.skills[5]"  value="6">
       <label for="api">API</label><br><br>
 
       <input type="submit" value="submit">

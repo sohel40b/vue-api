@@ -12,12 +12,12 @@ const router = createRouter({
     {
       path: '/simple',
       name: 'CrudIndex',
-      component: () => import('../views/crud/CrudIndex.vue')
+      component: () => import('../views/crud/CrudIndex.vue'),
     },
     {
       path: '/simple/create',
       name: 'CrudCreate',
-      component: () => import('../views/crud/CrudCreate.vue')
+      component: () => import('../views/crud/CrudCreate.vue'),
     },
     {
       path: '/simple/:id/edit',
