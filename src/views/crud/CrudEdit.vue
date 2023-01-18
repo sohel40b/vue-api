@@ -1,37 +1,43 @@
 <script setup>
-import useSimple from "../../composables/crud";
-import { onMounted } from "vue";
+  import useSimple from "../../composables/crud";
+  import { onMounted } from "vue";
 
-const { show, getShow, update, error } = useSimple();
+  const { show, getShow, update, error } = useSimple();
 
-const props = defineProps({
-    id: {
-        required: true,
-        type: String,
-    },
-});
+  const props = defineProps({
+      id: {
+          required: true,
+          type: String,
+      },
+  });
 
-onMounted(() => getShow(props.id));
+  onMounted(() => getShow(props.id));
 </script>
 
 <template>
     <main>
         <div class="center">
             <form @submit.prevent="update($route.params.id)">
-            <label for="fname">Name</label>
-            <input type="text" id="fname" v-model="show.name" required>
-            <div v-if="error.name">
-                <span class="error"> {{ error.name[0]}}</span>
-            </div>
 
-            <label for="femail">Email</label>
-            <input type="text" id="femail" v-model="show.email" required><br><br>
+              <label for="fname">Name</label>
+              <input type="text" id="fname" v-model="show.name" required>
+              <div v-if="error.name">
+                  <span class="error"> {{ error.name[0]}}</span>
+              </div>
 
-            <div v-if="error.email">
-                <span class="error"> {{ error.email[0]}}</span>
-            </div>
+              <label for="email">Email</label>
+              <input type="text" id="email" v-model="show.email" required><br><br>
+              <div v-if="error.email">
+                  <span class="error"> {{ error.email[0]}}</span>
+              </div>
 
-            <button type="submit">Submit</button>
+              <label for="image">Image: </label>
+              <div>
+                <img v-bind:src="'/storage/store' + show.image"/>
+              </div>
+              <input type="file" id="image" @change="appendFile($event.target.name, $event.target.files)" required><br><br>
+
+              <button type="submit">Submit</button>
             </form>
         </div>
     </main>
@@ -74,5 +80,9 @@ onMounted(() => getShow(props.id));
 
   input[type=submit]:hover {
     background-color: #45a049;
+  }
+  img {
+    width: 50px;
+    height: 50px;
   }
 </style>

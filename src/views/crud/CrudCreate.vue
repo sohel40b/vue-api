@@ -39,9 +39,9 @@
 
       <label>Gender</label>
       <input type="radio" id="male" v-model="data.gender" value="1">
-      <label for="male">Male</label>
-      <input type="radio" id="female" v-model="data.gender" value="0">
-      <label for="female">Female</label><br><br>
+      <label for="male">Male</label>
+      <input type="radio" id="female" v-model="data.gender" value="0">
+      <label for="female">Female</label><br><br>
 
       <div>Skills</div><br>
 
