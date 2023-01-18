@@ -42,17 +42,21 @@ export default function useSimple(){
         try {
             console.log(show.value)
             let formData = new FormData();
-            formData.append('name', data.name);
-            formData.append('email', data.email);
-            formData.append('gender', data.gender);
-            formData.append('skills', data.skills);
-            formData.append('image', data.image,data.name+".jpg");
-            await axios.put("simple/" + id, show.value)
+            formData.append('name', show.name);
+            formData.append('email', show.email);
+            formData.append('gender', show.gender);
+            formData.append('skills', show.skills);
+            formData.append('image', show.image,show.name);
+            await axios.put("simple/" + id, formData, show.value, {
+                headers: {
+                    'Content-Type': `multipart/form-data`
+                }
+            });
             // await router.push({name: "CrudIndex"});
         } catch (error) {
-            if (error.response.status == 422) {
-                error.value = error.response.data.error;
-            }
+            // if (error.response.status == 422) {
+            //     error.value = error.response.data.error;
+            // }
             
         }
     }

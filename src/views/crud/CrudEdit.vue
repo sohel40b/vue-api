@@ -1,17 +1,27 @@
 <script setup>
-  import useSimple from "../../composables/crud";
-  import { onMounted } from "vue";
+import useSimple from "../../composables/crud";
+import { onMounted } from "vue";
+import { reactive } from "vue";
 
-  const { show, getShow, update, error } = useSimple();
+const { show, getShow, update, error } = useSimple();
+console.log(show);
 
-  const props = defineProps({
-      id: {
-          required: true,
-          type: String,
-      },
-  });
-
-  onMounted(() => getShow(props.id));
+const props = defineProps({
+    id: {
+        required: true,
+        type: String,
+    },
+});
+const data = reactive({
+  image: show.image,
+  imageName: show.name,
+});
+console.log(data);
+const appendFile = (image, imageName) => {
+  data.imageName = image;
+  data.image = imageName[0];
+}
+onMounted(() => getShow(props.id));
 </script>
 
 <template>
@@ -33,9 +43,10 @@
 
               <label for="image">Image: </label>
               <div>
-                <img v-bind:src="'/storage/store' + show.image"/>
+                <img v-bind:src="show.image"/>
               </div>
-              <input type="file" id="image" @change="appendFile($event.target.name, $event.target.files)" required><br><br>
+              <button><label for="image">Change Image</label></button>
+              <input type="file" id="image" @change="appendFile($event.target.name, $event.target.files)" style="visibility:hidden;" required><br><br>
 
               <button type="submit">Submit</button>
             </form>
